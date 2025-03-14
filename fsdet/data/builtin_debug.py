@@ -25,13 +25,7 @@ from .meta_pascal_voc import register_meta_pascal_voc
 
 _PREDEFINED_SPLITS_COCO = {}
 _PREDEFINED_SPLITS_COCO["coco"] = {
-    # custom coco dataset
-    "orthomosaic_train": (
-        "datasets/dataset_coco/640x640_coco/train",
-        "datasets/dataset_coco/640x640_coco/train/_annotations.coco.json"
-    ),
-    """
-    coco_2014_train": (
+    "coco_2014_train": (
         "coco/train2014",
         "coco/annotations/instances_train2014.json",
     ),
@@ -71,7 +65,6 @@ _PREDEFINED_SPLITS_COCO["coco"] = {
         "coco/val2017",
         "coco/annotations/instances_val2017_100.json",
     ),
-    """
 }
 
 
@@ -91,23 +84,21 @@ def register_all_coco(root="datasets"):
     # register meta datasets
     METASPLITS = [
         (
-            "orthomosaic_train_all",
-            "datasets/dataset_coco/640x640_coco/train",
-            "datasets/dataset_coco/640x640_coco/train/_annotations.coco.json",
+            "coco_trainval_all",
+            "coco/trainval2014",
+            "cocosplit/datasplit/trainvalno5k.json",
         ),
         (
-            "orthomosaic_train_base",
-            "datasets/dataset_coco/640x640_coco/train",
-            "datasets/dataset_coco/640x640_coco/train/_annotations.coco.json",
+            "coco_trainval_base",
+            "coco/trainval2014",
+            "cocosplit/datasplit/trainvalno5k.json",
         ),
-        ("orthomosaic_test_all", "datasets/dataset_coco/640x640_coco/test", "datasets/dataset_coco/640x640_coco/test/_annotations.coco.json"),
-        ("orthomosaic_test_base", "datasets/dataset_coco/640x640_coco/test", "datasets/dataset_coco/640x640_coco/test/_annotations.coco.json"),
-        ("orthomosaic_test_novel", "datasets/dataset_coco/640x640_coco/test", "datasets/dataset_coco/640x640_coco/test/_annotations.coco.json"),
+        ("coco_test_all", "coco/val2014", "cocosplit/datasplit/5k.json"),
+        ("coco_test_base", "coco/val2014", "cocosplit/datasplit/5k.json"),
+        ("coco_test_novel", "coco/val2014", "cocosplit/datasplit/5k.json"),
     ]
 
     # register small meta datasets for fine-tuning stage
-    # TODO: must change path here
-    # TODO: add custom path here
     for prefix in ["all", "novel"]:
         for shot in [1, 2, 3, 5, 10, 30]:
             for seed in range(10):

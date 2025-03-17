@@ -18,9 +18,9 @@ DATASETS:
   TEST: ('ortho_test_all',)
 SOLVER:
   IMS_PER_BATCH: 2
-  BASE_LR: 0.001
+  BASE_LR: 0.0001
   STEPS: (200,)
-  MAX_ITER: 5000
+  MAX_ITER: 10000
   CHECKPOINT_PERIOD: 2000
   WARMUP_ITERS: 10
 OUTPUT_DIR: "outputs/faster_rcnn/faster_rcnn_R_101_FPN_ft_all_50shot"

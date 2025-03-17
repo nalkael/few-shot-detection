@@ -1,3 +1,4 @@
+
 """
 Detection Training Script.
 
@@ -14,22 +15,16 @@ this file as an example of how to use the library.
 You may want to write your own script with your datasets and other customizations.
 """
 
-import os
+from fsdet.config import get_cfg, set_global_cfg
+from fsdet.engine import DefaultTrainer, default_argument_parser, default_setup
 
 import detectron2.utils.comm as comm
+import os
 from detectron2.checkpoint import DetectionCheckpointer
 from detectron2.data import MetadataCatalog
 from detectron2.engine import launch
-
-from fsdet.config import get_cfg, set_global_cfg
-from fsdet.engine import DefaultTrainer, default_argument_parser, default_setup
 from fsdet.evaluation import (
-    COCOEvaluator,
-    DatasetEvaluators,
-    LVISEvaluator,
-    PascalVOCDetectionEvaluator,
-    verify_results,
-)
+    COCOEvaluator, DatasetEvaluators, LVISEvaluator, PascalVOCDetectionEvaluator, verify_results)
 
 
 class Trainer(DefaultTrainer):
@@ -103,7 +98,7 @@ def main(args):
     consider writing your own training loop or subclassing the trainer.
     """
     trainer = Trainer(cfg)
-    trainer.resume_or_load(resume=args.resume)
+    trainer.resume_or_load(resume=False)
     return trainer.train()
 
 

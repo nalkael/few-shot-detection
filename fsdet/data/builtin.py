@@ -7,75 +7,83 @@ We hard-code metadata for common datasets. This will enable:
 We hard-code some paths to the dataset that's assumed to
 exist in "./datasets/".
 
-Here we only register the few-shot datasets and complete COCO, PascalVOC and
-LVIS have been handled by the builtin datasets in detectron2.
+Here we only register the few-shot datasets and complete COCO, PascalVOC and 
+LVIS have been handled by the builtin datasets in detectron2. 
 """
 
 import os
+import sys
+from detectron2.data import DatasetCatalog, MetadataCatalog
+from detectron2.data.datasets.lvis import (
+    get_lvis_instances_meta,
+    register_lvis_instances,
+)
+from detectron2.data.datasets.pascal_voc import register_pascal_voc
+from detectron2.data.datasets.register_coco import register_coco_instances
 
-from detectron2.data import MetadataCatalog
-from detectron2.data.datasets.lvis import register_lvis_instances
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))  # Add the script's directory
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # Add the parent directory
 
-from .builtin_meta import _get_builtin_metadata
-from .meta_coco import register_meta_coco
-from .meta_lvis import register_meta_lvis
-from .meta_pascal_voc import register_meta_pascal_voc
+#print("path: ", os.path.dirname(os.path.abspath(__file__)))
+
+from fsdet.data.builtin_meta import _get_builtin_metadata
+from fsdet.data.meta_coco import register_meta_coco
+from fsdet.data.meta_lvis import register_meta_lvis
+from fsdet.data.meta_pascal_voc import register_meta_pascal_voc
 
 # ==== Predefined datasets and splits for COCO ==========
-
+root_pth = "/home/rdluhu/Dokumente/few-shot-object-detection/datasets"
 _PREDEFINED_SPLITS_COCO = {}
 _PREDEFINED_SPLITS_COCO["coco"] = {
-    # custom coco dataset
-    "orthomosaic_train": (
-        "datasets/dataset_coco/640x640_coco/train",
-        "datasets/dataset_coco/640x640_coco/train/_annotations.coco.json"
+    # orthomosaic
+    "ortho_train": (
+        "dataset_coco/640x640_coco/train",
+        "dataset_coco/640x640_coco/train/_annotations.coco.json",
     ),
-    """
-    coco_2014_train": (
-        "coco/train2014",
-        "coco/annotations/instances_train2014.json",
-    ),
-    "coco_2014_val": (
-        "coco/val2014",
-        "coco/annotations/instances_val2014.json",
-    ),
-    "coco_2014_minival": (
-        "coco/val2014",
-        "coco/annotations/instances_minival2014.json",
-    ),
-    "coco_2014_minival_100": (
-        "coco/val2014",
-        "coco/annotations/instances_minival2014_100.json",
-    ),
-    "coco_2014_valminusminival": (
-        "coco/val2014",
-        "coco/annotations/instances_valminusminival2014.json",
-    ),
-    "coco_2017_train": (
-        "coco/train2017",
-        "coco/annotations/instances_train2017.json",
-    ),
-    "coco_2017_val": (
-        "coco/val2017",
-        "coco/annotations/instances_val2017.json",
-    ),
-    "coco_2017_test": (
-        "coco/test2017",
-        "coco/annotations/image_info_test2017.json",
-    ),
-    "coco_2017_test-dev": (
-        "coco/test2017",
-        "coco/annotations/image_info_test-dev2017.json",
-    ),
-    "coco_2017_val_100": (
-        "coco/val2017",
-        "coco/annotations/instances_val2017_100.json",
-    ),
-    """
+    # "coco_2014_train": (
+    #     "coco/train2014",
+    #     "coco/annotations/instances_train2014.json",
+    # ),
+    # "coco_2014_val": (
+    #     "coco/val2014",
+    #     "coco/annotations/instances_val2014.json",
+    # ),
+    # "coco_2014_minival": (
+    #     "coco/val2014",
+    #     "coco/annotations/instances_minival2014.json",
+    # ),
+    # "coco_2014_minival_100": (
+    #     "coco/val2014",
+    #     "coco/annotations/instances_minival2014_100.json",
+    # ),
+    # "coco_2014_valminusminival": (
+    #     "coco/val2014",
+    #     "coco/annotations/instances_valminusminival2014.json",
+    # ),
+    # "coco_2017_train": (
+    #     "coco/train2017",
+    #     "coco/annotations/instances_train2017.json",
+    # ),
+    # "coco_2017_val": (
+    #     "coco/val2017",
+    #     "coco/annotations/instances_val2017.json",
+    # ),
+    # "coco_2017_test": (
+    #     "coco/test2017",
+    #     "coco/annotations/image_info_test2017.json",
+    # ),
+    # "coco_2017_test-dev": (
+    #     "coco/test2017",
+    #     "coco/annotations/image_info_test-dev2017.json",
+    # ),
+    # "coco_2017_val_100": (
+    #     "coco/val2017",
+    #     "coco/annotations/instances_val2017_100.json",
+    # ),
 }
 
 
-def register_all_coco(root="datasets"):
+def register_all_coco(root=root_pth):
     # for dataset_name, splits_per_dataset in _PREDEFINED_SPLITS_COCO.items():
     #     for key, (image_root, json_file) in splits_per_dataset.items():
     #         # Assume pre-defined datasets live in `./datasets`.
@@ -91,39 +99,123 @@ def register_all_coco(root="datasets"):
     # register meta datasets
     METASPLITS = [
         (
-            "orthomosaic_train_all",
-            "datasets/dataset_coco/640x640_coco/train",
-            "datasets/dataset_coco/640x640_coco/train/_annotations.coco.json",
+            "ortho_train_all",
+            "dataset_coco/640x640_coco/train",
+            "dataset_coco/640x640_coco/train/_annotations.coco.json",
         ),
         (
-            "orthomosaic_train_base",
-            "datasets/dataset_coco/640x640_coco/train",
-            "datasets/dataset_coco/640x640_coco/train/_annotations.coco.json",
+            "ortho_train_base",
+            "dataset_coco/640x640_coco/train",
+            "dataset_coco/640x640_coco/train/_annotations.coco.json",
         ),
-        ("orthomosaic_test_all", "datasets/dataset_coco/640x640_coco/test", "datasets/dataset_coco/640x640_coco/test/_annotations.coco.json"),
-        ("orthomosaic_test_base", "datasets/dataset_coco/640x640_coco/test", "datasets/dataset_coco/640x640_coco/test/_annotations.coco.json"),
-        ("orthomosaic_test_novel", "datasets/dataset_coco/640x640_coco/test", "datasets/dataset_coco/640x640_coco/test/_annotations.coco.json"),
+        ("ortho_test_all", "dataset_coco/640x640_coco/valid", "dataset_coco/640x640_coco/valid/_annotations.coco.json"),
+        ("ortho_test_base", "dataset_coco/640x640_coco/valid", "dataset_coco/640x640_coco/valid/_annotations.coco.json"),
+        ("ortho_test_novel", "dataset_coco/640x640_coco/valid", "dataset_coco/640x640_coco/valid/_annotations.coco.json"),
     ]
 
     # register small meta datasets for fine-tuning stage
-    # TODO: must change path here
-    # TODO: add custom path here
     for prefix in ["all", "novel"]:
-        for shot in [1, 2, 3, 5, 10, 30]:
+        # for shot in [1, 2, 3, 5, 10, 30]:
+        for shot in [1, 2, 3, 5, 10, 30, 50]: # change shot
             for seed in range(10):
                 seed = "" if seed == 0 else "_seed{}".format(seed)
                 name = "coco_trainval_{}_{}shot{}".format(prefix, shot, seed)
-                METASPLITS.append((name, "coco/trainval2014", ""))
+                METASPLITS.append((name, "dataset_coco/640x640_coco/train", ""))
 
     for name, imgdir, annofile in METASPLITS:
         register_meta_coco(
             name,
-            _get_builtin_metadata("coco_fewshot"),
+            # return _get_coco_fewshot_instances_meta()
+            _get_builtin_metadata("coco_fewshot"), 
             os.path.join(root, imgdir),
             os.path.join(root, annofile),
         )
 
+# ==== register custom dataset for coco format ==========
 
+_PREDEFINED_BASE_DATA = {
+    "jiaonang_base_data":{
+        "base_train":("jiaonang/base/train","jiaonang/base/train.json"),
+        "base_test":("jiaonang/base/test","jiaonang/base/test.json"),
+        "base_val":("jiaonang/base/val","jiaonang/base/val.json")
+    }
+}
+def register_base_data(root=root_pth):
+    for dataset_name, splits_per_dataset in _PREDEFINED_BASE_DATA.items():
+        for key, (image_root, json_file) in splits_per_dataset.items():
+            # Assume pre-defined datasets live in `./datasets`.
+            register_coco_instances(
+                key,
+                {},
+                #_get_builtin_metadata(dataset_name),
+                os.path.join(root, json_file)
+                if "://" not in json_file
+                else json_file,
+                os.path.join(root, image_root),
+            )
+
+_PREDEFINED_BALANCE_DATA = {
+    "jiaonang_balance_data":{
+        "balance_train":("jiaonang/balance/train","jiaonang/balance/train.json"),
+        "balance_test":("jiaonang/balance/test","jiaonang/balance/test.json"),
+        "balance_val":("jiaonang/balance/val","jiaonang/balance/val.json")
+    }
+}
+def register_balance_data(root=root_pth):
+    for dataset_name, splits_per_dataset in _PREDEFINED_BALANCE_DATA.items():
+        for key, (image_root, json_file) in splits_per_dataset.items():
+            # Assume pre-defined datasets live in `./datasets`.
+            register_coco_instances(
+                key,
+                {},
+                # _get_builtin_metadata(dataset_name),
+                os.path.join(root, json_file)
+                if "://" not in json_file
+                else json_file,
+                os.path.join(root, image_root),
+            )
+
+_PREDEFINED_FEW_DATA = {
+    "jiaonang_few_data":{
+        "few_train":("jiaonang/few/train","jiaonang/few/train.json"),
+        "few_test":("jiaonang/few/few","jiaonang/few/test.json"),
+        "few_val":("jiaonang/few/val","jiaonang/few/val.json")
+    }
+}
+def register_few_data(root=root_pth):
+    for dataset_name, splits_per_dataset in _PREDEFINED_FEW_DATA.items():
+        for key, (image_root, json_file) in splits_per_dataset.items():
+            # Assume pre-defined datasets live in `./datasets`.
+            register_coco_instances(
+                key,
+                {},
+                # _get_builtin_metadata(dataset_name),
+                os.path.join(root, json_file)
+                if "://" not in json_file
+                else json_file,
+                os.path.join(root, image_root),
+            )
+
+_PREDEFINED_YINXIAN_DATA = {
+    "yinxian_data":{
+        "yx_train":("yinxian/images","yinxian/dataset.json"),
+        "yx_test": ("yinxian/test", "yinxian/test.json")
+    }
+}
+def register_yx_data(root=root_pth):
+    for dataset_name, splits_per_dataset in _PREDEFINED_YINXIAN_DATA.items():
+        for key, (image_root, json_file) in splits_per_dataset.items():
+            # Assume pre-defined datasets live in `./datasets`.
+            register_coco_instances(
+                key,
+                {},
+                # _get_builtin_metadata(dataset_name),
+                os.path.join(root, json_file)
+                if "://" not in json_file
+                else json_file,
+                os.path.join(root, image_root),
+            )
+            
 # ==== Predefined datasets and splits for LVIS ==========
 
 _PREDEFINED_SPLITS_LVIS = {
@@ -195,7 +287,7 @@ def register_all_lvis(root="datasets"):
 
 
 # ==== Predefined splits for PASCAL VOC ===========
-def register_all_pascal_voc(root="datasets"):
+def register_all_pascal_voc(root=root_pth):
     # SPLITS = [
     #     ("voc_2007_trainval", "VOC2007", "trainval"),
     #     ("voc_2007_train", "VOC2007", "train"),
@@ -276,3 +368,93 @@ def register_all_pascal_voc(root="datasets"):
 register_all_coco()
 register_all_lvis()
 register_all_pascal_voc()
+# Register custom data
+register_base_data()
+register_balance_data()
+register_few_data()
+register_yx_data()
+
+
+
+import cv2
+from detectron2.data import DatasetCatalog, MetadataCatalog
+from detectron2.data.datasets.coco import load_coco_json
+from detectron2.utils.visualizer import  Visualizer
+import pycocotools
+# 
+
+CLASS_NAMES =["1","2", "3", "4", "5", "6"]
+# dataset path
+DATASET_ROOT = '/home/rdluhu/Dokumente/few-shot-object-detection/datasets'
+ANN_ROOT = os.path.join(DATASET_ROOT, 'base')
+#
+TRAIN_PATH = os.path.join(ANN_ROOT, 'train')
+VAL_PATH = os.path.join(ANN_ROOT, 'val')
+#
+TRAIN_JSON = os.path.join(ANN_ROOT, 'train.json')
+# #VAL_JSON = os.path.join(ANN_ROOT, 'val.json')
+VAL_JSON = os.path.join(ANN_ROOT, 'val.json')
+#
+# # 声明数据集的子集
+# PREDEFINED_SPLITS_DATASET = {
+#     "coco_my_train": (TRAIN_PATH, TRAIN_JSON),
+#     "coco_my_val": (VAL_PATH, VAL_JSON),
+# }
+#
+# #注册数据集（这一步就是将自定义数据集注册进Detectron2）
+# def register_dataset():
+#     """
+#     purpose: register all splits of dataset with PREDEFINED_SPLITS_DATASET
+#     """
+#     for key, (image_root, json_file) in PREDEFINED_SPLITS_DATASET.items():
+#         register_dataset_instances(name=key,
+#                                    json_file=json_file,
+#                                    image_root=image_root)
+#
+#
+# #注册数据集实例，加载数据集中的对象实例
+# def register_dataset_instances(name, json_file, image_root):
+#     """
+#     purpose: register dataset to DatasetCatalog,
+#              register metadata to MetadataCatalog and set attribute
+#     """
+#     DatasetCatalog.register(name, lambda: load_coco_json(json_file, image_root, name))
+#     MetadataCatalog.get(name).set(json_file=json_file,
+#                                   image_root=image_root,
+#                                   evaluator_type="coco")
+#
+#
+# # 注册数据集和元数据
+# def plain_register_dataset():
+#     #训练集
+#     DatasetCatalog.register("coco_my_train", lambda: load_coco_json(TRAIN_JSON, TRAIN_PATH))
+#     MetadataCatalog.get("coco_my_train").set(thing_classes=CLASS_NAMES,  # 可以选择开启，但是不能显示中文，这里需要注意，中文的话最好关闭
+#                                                     evaluator_type='coco', # 指定评估方式
+#                                                     json_file=TRAIN_JSON,
+#                                                     image_root=TRAIN_PATH)
+#
+#     #DatasetCatalog.register("coco_my_val", lambda: load_coco_json(VAL_JSON, VAL_PATH, "coco_2017_val"))
+#     #验证/测试集
+#     DatasetCatalog.register("coco_my_val", lambda: load_coco_json(VAL_JSON, VAL_PATH))
+#     MetadataCatalog.get("coco_my_val").set(thing_classes=CLASS_NAMES, # 可以选择开启，但是不能显示中文，这里需要注意，中文的话最好关闭
+#                                                 evaluator_type='coco', # 指定评估方式
+#                                                 json_file=VAL_JSON,
+#                                                 image_root=VAL_PATH)
+# # 查看数据集标注，可视化检查数据集标注是否正确，
+# #这个也可以自己写脚本判断，其实就是判断标注框是否超越图像边界
+# #可选择使用此方法
+# def checkout_dataset_annotation(name="coco_my_val"):
+#     #dataset_dicts = load_coco_json(TRAIN_JSON, TRAIN_PATH, name)
+#     dataset_dicts = load_coco_json(TRAIN_JSON, TRAIN_PATH)
+#     #print(len(dataset_dicts))
+#     for i, d in enumerate(dataset_dicts,0):
+#         #print(d)
+#         img = cv2.imread(d["file_name"])
+#         visualizer = Visualizer(img[:, :, ::-1], metadata=MetadataCatalog.get(name), scale=1.5)
+#         vis = visualizer.draw_dataset_dict(d)
+#         cv2.imshow('show', vis.get_image()[:, :, ::-1])
+#         cv2.imwrite('out/'+str(i) + '.jpg',vis.get_image()[:, :, ::-1])
+#         cv2.waitKey(0)
+#         if i == 200:
+#             break
+

@@ -1,6 +1,6 @@
 _BASE_: "../Base-RCNN-FPN.yaml"
 MODEL:
-  WEIGHTS: "demo/model_final.pth"
+  WEIGHTS: "checkpoints/coco/faster_rcnn/faster_rcnn_R_101_FPN_ft_novel_1shot_combine/model_reset_combine.pth"
   MASK_ON: False
   RESNETS:
     DEPTH: 101
@@ -18,8 +18,8 @@ DATASETS:
 SOLVER:
   IMS_PER_BATCH: 16
   BASE_LR: 0.001
-  STEPS: (14400,)
-  MAX_ITER: 16000
+  STEPS: (1500,)
+  MAX_ITER: 3000
   CHECKPOINT_PERIOD: 1000
   WARMUP_ITERS: 10
 OUTPUT_DIR: "outputs/faster_rcnn/faster_rcnn_R_101_FPN_ft_all_1shot"

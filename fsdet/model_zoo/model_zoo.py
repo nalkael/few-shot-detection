@@ -18,58 +18,6 @@ class _ModelZooUrls(object):
     # format: {config_path.yaml} -> model_id/model_final.pth
     CONFIG_PATH_TO_URL_SUFFIX = {
         ### PASCAL VOC Detection ###
-        # Base Model
-        "PascalVOC-detection/split1/faster_rcnn_R_101_FPN_base1.yaml": "voc/split1/base_model/model_final.pth",
-        "PascalVOC-detection/split2/faster_rcnn_R_101_FPN_base2.yaml": "voc/split2/base_model/model_final.pth",
-        "PascalVOC-detection/split3/faster_rcnn_R_101_FPN_base3.yaml": "voc/split3/base_model/model_final.pth",
-        # FRCN+ft-full
-        "PascalVOC-detection/split1/faster_rcnn_R_101_FPN_ft_all1_1shot_unfreeze.yaml": "voc/split1/FRCN+ft-full_1shot/model_final.pth",
-        "PascalVOC-detection/split1/faster_rcnn_R_101_FPN_ft_all1_2shot_unfreeze.yaml": "voc/split1/FRCN+ft-full_2shot/model_final.pth",
-        "PascalVOC-detection/split1/faster_rcnn_R_101_FPN_ft_all1_3shot_unfreeze.yaml": "voc/split1/FRCN+ft-full_3shot/model_final.pth",
-        "PascalVOC-detection/split1/faster_rcnn_R_101_FPN_ft_all1_5shot_unfreeze.yaml": "voc/split1/FRCN+ft-full_5shot/model_final.pth",
-        "PascalVOC-detection/split1/faster_rcnn_R_101_FPN_ft_all1_10shot_unfreeze.yaml": "voc/split1/FRCN+ft-full_10shot/model_final.pth",
-        "PascalVOC-detection/split2/faster_rcnn_R_101_FPN_ft_all2_1shot_unfreeze.yaml": "voc/split2/FRCN+ft-full_1shot/model_final.pth",
-        "PascalVOC-detection/split2/faster_rcnn_R_101_FPN_ft_all2_2shot_unfreeze.yaml": "voc/split2/FRCN+ft-full_2shot/model_final.pth",
-        "PascalVOC-detection/split2/faster_rcnn_R_101_FPN_ft_all2_3shot_unfreeze.yaml": "voc/split2/FRCN+ft-full_3shot/model_final.pth",
-        "PascalVOC-detection/split2/faster_rcnn_R_101_FPN_ft_all2_5shot_unfreeze.yaml": "voc/split2/FRCN+ft-full_5shot/model_final.pth",
-        "PascalVOC-detection/split2/faster_rcnn_R_101_FPN_ft_all2_10shot_unfreeze.yaml": "voc/split2/FRCN+ft-full_10shot/model_final.pth",
-        "PascalVOC-detection/split3/faster_rcnn_R_101_FPN_ft_all3_1shot_unfreeze.yaml": "voc/split3/FRCN+ft-full_1shot/model_final.pth",
-        "PascalVOC-detection/split3/faster_rcnn_R_101_FPN_ft_all3_2shot_unfreeze.yaml": "voc/split3/FRCN+ft-full_2shot/model_final.pth",
-        "PascalVOC-detection/split3/faster_rcnn_R_101_FPN_ft_all3_3shot_unfreeze.yaml": "voc/split3/FRCN+ft-full_3shot/model_final.pth",
-        "PascalVOC-detection/split3/faster_rcnn_R_101_FPN_ft_all3_5shot_unfreeze.yaml": "voc/split3/FRCN+ft-full_5shot/model_final.pth",
-        "PascalVOC-detection/split3/faster_rcnn_R_101_FPN_ft_all3_10shot_unfreeze.yaml": "voc/split3/FRCN+ft-full_10shot/model_final.pth",
-        # TFA w/ cos
-        "PascalVOC-detection/split1/faster_rcnn_R_101_FPN_ft_all1_1shot.yaml": "voc/split1/tfa_cos_1shot/model_final.pth",
-        "PascalVOC-detection/split1/faster_rcnn_R_101_FPN_ft_all1_2shot.yaml": "voc/split1/tfa_cos_2shot/model_final.pth",
-        "PascalVOC-detection/split1/faster_rcnn_R_101_FPN_ft_all1_3shot.yaml": "voc/split1/tfa_cos_3shot/model_final.pth",
-        "PascalVOC-detection/split1/faster_rcnn_R_101_FPN_ft_all1_5shot.yaml": "voc/split1/tfa_cos_5shot/model_final.pth",
-        "PascalVOC-detection/split1/faster_rcnn_R_101_FPN_ft_all1_10shot.yaml": "voc/split1/tfa_cos_10shot/model_final.pth",
-        "PascalVOC-detection/split2/faster_rcnn_R_101_FPN_ft_all2_1shot.yaml": "voc/split2/tfa_cos_1shot/model_final.pth",
-        "PascalVOC-detection/split2/faster_rcnn_R_101_FPN_ft_all2_2shot.yaml": "voc/split2/tfa_cos_2shot/model_final.pth",
-        "PascalVOC-detection/split2/faster_rcnn_R_101_FPN_ft_all2_3shot.yaml": "voc/split2/tfa_cos_3shot/model_final.pth",
-        "PascalVOC-detection/split2/faster_rcnn_R_101_FPN_ft_all2_5shot.yaml": "voc/split2/tfa_cos_5shot/model_final.pth",
-        "PascalVOC-detection/split2/faster_rcnn_R_101_FPN_ft_all2_10shot.yaml": "voc/split2/tfa_cos_10shot/model_final.pth",
-        "PascalVOC-detection/split3/faster_rcnn_R_101_FPN_ft_all3_1shot.yaml": "voc/split3/tfa_cos_1shot/model_final.pth",
-        "PascalVOC-detection/split3/faster_rcnn_R_101_FPN_ft_all3_2shot.yaml": "voc/split3/tfa_cos_2shot/model_final.pth",
-        "PascalVOC-detection/split3/faster_rcnn_R_101_FPN_ft_all3_3shot.yaml": "voc/split3/tfa_cos_3shot/model_final.pth",
-        "PascalVOC-detection/split3/faster_rcnn_R_101_FPN_ft_all3_5shot.yaml": "voc/split3/tfa_cos_5shot/model_final.pth",
-        "PascalVOC-detection/split3/faster_rcnn_R_101_FPN_ft_all3_10shot.yaml": "voc/split3/tfa_cos_10shot/model_final.pth",
-        # TFA w/ fc
-        "PascalVOC-detection/split1/faster_rcnn_R_101_FPN_ft_fc_all1_1shot.yaml": "voc/split1/tfa_fc_1shot/model_final.pth",
-        "PascalVOC-detection/split1/faster_rcnn_R_101_FPN_ft_fc_all1_2shot.yaml": "voc/split1/tfa_fc_2shot/model_final.pth",
-        "PascalVOC-detection/split1/faster_rcnn_R_101_FPN_ft_fc_all1_3shot.yaml": "voc/split1/tfa_fc_3shot/model_final.pth",
-        "PascalVOC-detection/split1/faster_rcnn_R_101_FPN_ft_fc_all1_5shot.yaml": "voc/split1/tfa_fc_5shot/model_final.pth",
-        "PascalVOC-detection/split1/faster_rcnn_R_101_FPN_ft_fc_all1_10shot.yaml": "voc/split1/tfa_fc_10shot/model_final.pth",
-        "PascalVOC-detection/split2/faster_rcnn_R_101_FPN_ft_fc_all2_1shot.yaml": "voc/split2/tfa_fc_1shot/model_final.pth",
-        "PascalVOC-detection/split2/faster_rcnn_R_101_FPN_ft_fc_all2_2shot.yaml": "voc/split2/tfa_fc_2shot/model_final.pth",
-        "PascalVOC-detection/split2/faster_rcnn_R_101_FPN_ft_fc_all2_3shot.yaml": "voc/split2/tfa_fc_3shot/model_final.pth",
-        "PascalVOC-detection/split2/faster_rcnn_R_101_FPN_ft_fc_all2_5shot.yaml": "voc/split2/tfa_fc_5shot/model_final.pth",
-        "PascalVOC-detection/split2/faster_rcnn_R_101_FPN_ft_fc_all2_10shot.yaml": "voc/split2/tfa_fc_10shot/model_final.pth",
-        "PascalVOC-detection/split3/faster_rcnn_R_101_FPN_ft_fc_all3_1shot.yaml": "voc/split3/tfa_fc_1shot/model_final.pth",
-        "PascalVOC-detection/split3/faster_rcnn_R_101_FPN_ft_fc_all3_2shot.yaml": "voc/split3/tfa_fc_2shot/model_final.pth",
-        "PascalVOC-detection/split3/faster_rcnn_R_101_FPN_ft_fc_all3_3shot.yaml": "voc/split3/tfa_fc_3shot/model_final.pth",
-        "PascalVOC-detection/split3/faster_rcnn_R_101_FPN_ft_fc_all3_5shot.yaml": "voc/split3/tfa_fc_5shot/model_final.pth",
-        "PascalVOC-detection/split3/faster_rcnn_R_101_FPN_ft_fc_all3_10shot.yaml": "voc/split3/tfa_fc_10shot/model_final.pth",
         ### COCO Detection ###
         # Base Model
         "COCO-detection/faster_rcnn_R_101_FPN_base.yaml": "coco/base_model/model_final.pth",
@@ -95,28 +43,6 @@ class _ModelZooUrls(object):
         "COCO-detection/faster_rcnn_R_101_FPN_ft_fc_all_10shot.yaml": "coco/tfa_fc_10shot/model_final.pth",
         "COCO-detection/faster_rcnn_R_101_FPN_ft_fc_all_30shot.yaml": "coco/tfa_fc_30shot/model_final.pth",
         ### LVIS Detection ###
-        # Base Models
-        ## With repeat sampling
-        "LVIS-detection/faster_rcnn_R_50_FPN_base.yaml": "lvis/R_50_FPN_base_repeat_fc/model_final.pth",
-        "LVIS-detection/faster_rcnn_R_50_FPN_base_cosine.yaml": "lvis/R_50_FPN_base_repeat_cos/model_final.pth",
-        "LVIS-detection/faster_rcnn_R_101_FPN_base.yaml": "lvis/R_101_FPN_base_repeat_fc/model_final.pth",
-        "LVIS-detection/faster_rcnn_R_101_FPN_base_cosine.yaml": "lvis/R_101_FPN_base_repeat_cos/model_final.pth",
-        ## No repeat sampling
-        "LVIS-detection/faster_rcnn_R_50_FPN_base_norepeat.yaml": "lvis/R_50_FPN_base_norepeat_fc/model_final.pth",
-        "LVIS-detection/faster_rcnn_R_50_FPN_base_norepeat_cosine.yaml": "lvis/R_50_FPN_base_norepeat_cos/model_final.pth",
-        "LVIS-detection/faster_rcnn_R_101_FPN_base_norepeat.yaml": "lvis/R_101_FPN_base_norepeat_fc/model_final.pth",
-        "LVIS-detection/faster_rcnn_R_101_FPN_base_norepeat_cosine.yaml": "lvis/R_101_FPN_base_norepeat_cos/model_final.pth",
-        # Fine-tuned Models
-        ## With repeat sampling
-        "LVIS-detection/faster_rcnn_R_50_FPN_combined_all.yaml": "lvis/R_50_FPN_repeat_fc/model_final.pth",
-        "LVIS-detection/faster_rcnn_R_50_FPN_cosine_combined_all.yaml": "lvis/R_50_FPN_repeat_cos/model_final.pth",
-        "LVIS-detection/faster_rcnn_R_101_FPN_combined_all.yaml": "lvis/R_101_FPN_repeat_fc/model_final.pth",
-        "LVIS-detection/faster_rcnn_R_101_FPN_cosine_combined_all.yaml": "lvis/R_101_FPN_repeat_cos/model_final.pth",
-        ## No repeat sampling
-        "LVIS-detection/faster_rcnn_R_50_FPN_combined_all_norepeat.yaml": "lvis/R_50_FPN_norepeat_fc/model_final.pth",
-        "LVIS-detection/faster_rcnn_R_50_FPN_cosine_combined_all_norepeat.yaml": "lvis/R_50_FPN_norepeat_cos/model_final.pth",
-        "LVIS-detection/faster_rcnn_R_101_FPN_combined_all_norepeat.yaml": "lvis/R_101_FPN_norepeat_fc/model_final.pth",
-        "LVIS-detection/faster_rcnn_R_101_FPN_cosine_combined_all_norepeat.yaml": "lvis/R_101_FPN_norepeat_cos/model_final.pth",
     }
 
 

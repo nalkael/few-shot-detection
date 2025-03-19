@@ -432,7 +432,8 @@ class CosineSimOutputLayers(nn.Module):
         self.scale = cfg.MODEL.ROI_HEADS.COSINE_SCALE
         if self.scale == -1:
             # learnable global scaling factor
-            self.scale = nn.Parameter(torch.ones(1) * 20.0)
+            # self.scale = nn.Parameter(torch.ones(1) * 20.0)
+            self.scale = nn.Parameter(torch.ones(1) * 50.0)
         num_bbox_reg_classes = 1 if cls_agnostic_bbox_reg else num_classes
         self.bbox_pred = nn.Linear(input_size, num_bbox_reg_classes * box_dim)
 

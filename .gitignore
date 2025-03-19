@@ -12,6 +12,9 @@ runs/
 # samples/
 sample_result/
 defrcn*/
+coco/
+cocosplit/
+checkpoints/
 
 # big files
 *.synctex.gz*

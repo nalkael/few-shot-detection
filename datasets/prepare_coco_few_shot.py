@@ -14,7 +14,7 @@ def parse_args():
 
 def generate_seeds(args):
     #data_path = 'datasets/cocosplit/datasplit/trainvalno5k.json'
-    data_path = '/home/rdluhu/Dokumente/few-shot-object-detection/datasets/dataset_coco/640x640_coco/train/_annotations.coco.json'
+    data_path = '/home/rdluhu/Dokumente/few-shot-object-detection/datasets/coco/640x640_coco/train/_annotations.coco.json'
     data = json.load(open(data_path))
 
     new_all_cats = []
@@ -43,8 +43,8 @@ def generate_seeds(args):
 
             sample_shots = []
             sample_imgs = []
-            # for shots in [1, 2, 3, 5, 10, 30]:
-            for shots in [1, 2, 3, 5, 10, 30, 50]:
+            # for shots in [1, 2, 3, 5, 10, 20, 30, 50]:
+            for shots in [1, 2, 3, 5, 10, 20, 30, 50]:
                 while True:
                     imgs = random.sample(list(img_ids.keys()), shots)
                     for img in imgs:

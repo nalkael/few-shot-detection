@@ -234,9 +234,12 @@ COCO_NOVEL_CATEGORIES = [
     # custom
 
     {"color": [220, 20, 60], "isthing": 1, "id": 1, "name": "Gasschieberdeckel"},
+    # {"color": [119, 11, 32], "isthing": 1, "id": 2, "name": "Kanalschachtdeckel"},
+    {"color": [0, 0, 142], "isthing": 1, "id": 3, "name": "Sinkkaesten"},
     {"color": [0, 0, 230], "isthing": 1, "id": 4, "name": "Unterflurhydrant"},
-    {"color": [106, 0, 228], "isthing": 1, "id": 5, "name": "Versorgungsschacht"},
-    {"color": [0, 60, 100], "isthing": 1, "id": 6, "name": "Wasserschieberdeckel"},
+    # {"color": [106, 0, 228], "isthing": 1, "id": 5, "name": "Versorgungsschacht"},
+    # {"color": [0, 60, 100], "isthing": 1, "id": 6, "name": "Wasserschieberdeckel"},
+
 
     # {"color": [220, 20, 60], "isthing": 1, "id": 1, "name": "person"},
     # {"color": [119, 11, 32], "isthing": 1, "id": 2, "name": "bicycle"},
@@ -394,10 +397,7 @@ PASCAL_VOC_BASE_CATEGORIES = {
 def _get_coco_instances_meta():
     thing_ids = [k["id"] for k in COCO_CATEGORIES if k["isthing"] == 1]
     thing_colors = [k["color"] for k in COCO_CATEGORIES if k["isthing"] == 1]
-    
-    ### len(things_ids): the number of categories of custom dataset
-    assert len(thing_ids) == 6, len(thing_ids)  # @ Huaixin Luo
-    
+    assert len(thing_ids) == 6, len(thing_ids)  # @wangzheng 80
     # Mapping from the incontiguous COCO category id to an id in [0, 79]
     thing_dataset_id_to_contiguous_id = {k: i for i, k in enumerate(thing_ids)}
     thing_classes = [k["name"] for k in COCO_CATEGORIES if k["isthing"] == 1]

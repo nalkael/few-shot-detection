@@ -1,4 +1,3 @@
-
 """
 Detection Training Script.
 
@@ -51,6 +50,10 @@ class Trainer(DefaultTrainer):
             evaluator_list.append(
                 COCOEvaluator(dataset_name, cfg, True, output_folder)
             )
+        if evaluator_type == "pascal_voc":
+            return PascalVOCDetectionEvaluator(dataset_name)
+        if evaluator_type == "lvis":
+            return LVISEvaluator(dataset_name, cfg, True, output_folder)
         if len(evaluator_list) == 0:
             raise NotImplementedError(
                 "no Evaluator for the dataset {} with the type {}".format(
@@ -94,7 +97,7 @@ def main(args):
     consider writing your own training loop or subclassing the trainer.
     """
     trainer = Trainer(cfg)
-    trainer.resume_or_load(resume=False)
+    trainer.resume_or_load(resume=args.resume)
     return trainer.train()
 
 

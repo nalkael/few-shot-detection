@@ -16,9 +16,9 @@ DATASETS:
   TRAIN: ('jiaonang_train_base',)
   TEST: ('test_base',)
 SOLVER:
-  IMS_PER_BATCH: 2
-  STEPS: (2000, 8000)
+  IMS_PER_BATCH: 4
+  STEPS: (8500, )
   MAX_ITER: 10000
-  BASE_LR: 0.02
-  WARMUP_ITERS: 1000
+  BASE_LR: 0.001
+  # WARMUP_ITERS: 1000
 OUTPUT_DIR: "checkpoints/coco/faster_rcnn/faster_rcnn_R_101_FPN_jiaonang_base"

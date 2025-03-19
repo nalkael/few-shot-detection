@@ -235,7 +235,7 @@ COCO_NOVEL_CATEGORIES = [
 
     {"color": [220, 20, 60], "isthing": 1, "id": 1, "name": "Gasschieberdeckel"},
     # {"color": [119, 11, 32], "isthing": 1, "id": 2, "name": "Kanalschachtdeckel"},
-    {"color": [0, 0, 142], "isthing": 1, "id": 3, "name": "Sinkkaesten"},
+    # {"color": [0, 0, 142], "isthing": 1, "id": 3, "name": "Sinkkaesten"},
     {"color": [0, 0, 230], "isthing": 1, "id": 4, "name": "Unterflurhydrant"},
     # {"color": [106, 0, 228], "isthing": 1, "id": 5, "name": "Versorgungsschacht"},
     # {"color": [0, 60, 100], "isthing": 1, "id": 6, "name": "Wasserschieberdeckel"},

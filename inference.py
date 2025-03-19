@@ -18,6 +18,8 @@ from detectron2 import model_zoo
 # It acts like a container holding multiple attributes in a structured way
 from detectron2.structures import Instances
 
+from fsdet.data.builtin import register_all_coco
+
 """
 # Load the config
 # dataset config
@@ -34,6 +36,8 @@ from detectron2.structures import Instances
 # novel_classes = dataset_info["novel_classes"]
 
 # load the configuration files that I saved
+register_all_coco()
+
 cfg = get_cfg()
 cfg.merge_from_file("configs/COCO-detection/faster_rcnn_R_50_FPN_ft_all_jiaonang_30shot_.yaml")
 

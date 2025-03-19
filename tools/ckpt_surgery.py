@@ -186,10 +186,10 @@ if __name__ == '__main__':
     if args.coco:
         # COCO
         NOVEL_CLASSES = [
-            1, 3, 4,
+            1, 4,
         ]
         BASE_CLASSES = [
-            2, 5, 6, 
+            2, 3, 5, 6, 
         ]
         ALL_CLASSES = sorted(BASE_CLASSES + NOVEL_CLASSES)
         IDMAP = {v:i for i, v in enumerate(ALL_CLASSES)}

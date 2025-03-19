@@ -1,6 +1,7 @@
 _BASE_: "../Base-RCNN-FPN.yaml"
 MODEL:
   WEIGHTS: "checkpoints/coco/faster_rcnn/faster_rcnn_R_101_FPN_base/model_reset_remove.pth"
+  # WEIGHTS: "checkpoints/coco/faster_rcnn/faster_rcnn_R_101_FPN_ft_all_30shot/model_final.pth"
   MASK_ON: False
   RESNETS:
     DEPTH: 101

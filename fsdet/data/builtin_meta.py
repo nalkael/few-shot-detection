@@ -2,28 +2,29 @@
 # It's from https://github.com/cocodataset/panopticapi/blob/master/panoptic_coco_categories.json
 COCO_CATEGORIES = [
     # custom
-    {"color": [220, 20, 60], "isthing": 1, "id": 1, "name": "car"},
-    {"color": [119, 11, 32], "isthing": 1, "id": 2, "name": "truck"},
-    {"color": [0, 0, 142], "isthing": 1, "id": 3, "name": "van"},
-    {"color": [0, 0, 230], "isthing": 1, "id": 4, "name": "longvehicle"},
-    {"color": [106, 0, 228], "isthing": 1, "id": 5, "name": "bus"},
-    {"color": [0, 60, 100], "isthing": 1, "id": 6, "name": "airliner"},
-    {"color": [220, 20, 60], "isthing": 1, "id": 7, "name": "propeller"},
-    {"color": [119, 11, 32], "isthing": 1, "id": 8, "name": "trainer"},
-    {"color": [0, 0, 142], "isthing": 1, "id": 9, "name": "chartered"},
-    {"color": [0, 0, 230], "isthing": 1, "id": 10, "name": "fighter"},
-    {"color": [106, 0, 228], "isthing": 1, "id": 11, "name": "other"},
-    {"color": [0, 60, 100], "isthing": 1, "id": 12, "name": "stairtruck"},
-    {"color": [0, 80, 100], "isthing": 1, "id": 13, "name": "pushbacktruck"},
-    {"color": [0, 0, 70], "isthing": 1, "id": 14, "name": "helicopter"},
-    {"color": [0, 0, 192], "isthing": 1, "id": 15, "name": "boat"},
+    {"color": [220, 20, 60], "isthing": 1, "id": 1, "name": "Gasschieberdeckel"},
+    {"color": [119, 11, 32], "isthing": 1, "id": 2, "name": "Kanalschachtdeckel"},
+    {"color": [0, 0, 142], "isthing": 1, "id": 3, "name": "Sinkkaesten"},
+    {"color": [0, 0, 230], "isthing": 1, "id": 4, "name": "Unterflurhydrant"},
+    {"color": [106, 0, 228], "isthing": 1, "id": 5, "name": "Versorgungsschacht"},
+    {"color": [0, 60, 100], "isthing": 1, "id": 6, "name": "Wasserschieberdeckel"},
 
-    {"color": [250, 170, 30], "isthing": 1, "id": 16, "name": "Gasschieberdeckel"},
-    {"color": [100, 170, 30], "isthing": 1, "id": 17, "name": "Kanalschachtdeckel"},
-    {"color": [220, 220, 0], "isthing": 1, "id": 18, "name": "Sinkkaestenn"},
-    {"color": [175, 116, 175], "isthing": 1, "id": 19, "name": "Unterflurhydrant"},
-    {"color": [250, 0, 30], "isthing": 1, "id": 20, "name": "Versorgungsschacht"},
-    {"color": [165, 42, 42], "isthing": 1, "id": 21, "name": "Wasserschieberdeckel"},
+    {"color": [220, 20, 60], "isthing": 1, "id": 7, "name": "airliner"},
+    {"color": [119, 11, 32], "isthing": 1, "id": 8, "name": "boat"},
+    {"color": [0, 0, 142], "isthing": 1, "id": 9, "name": "bus"},
+    {"color": [0, 0, 230], "isthing": 1, "id": 10, "name": "car"},
+    {"color": [106, 0, 228], "isthing": 1, "id": 11, "name": "chartered"},
+    {"color": [0, 60, 100], "isthing": 1, "id": 12, "name": "fighter"},
+    {"color": [0, 80, 100], "isthing": 1, "id": 13, "name": "helicopter"},
+    {"color": [0, 0, 70], "isthing": 1, "id": 14, "name": "longvehicle"},
+    {"color": [0, 0, 192], "isthing": 1, "id": 15, "name": "other"},
+    {"color": [250, 170, 30], "isthing": 1, "id": 16, "name": "propeller"},
+    {"color": [100, 170, 30], "isthing": 1, "id": 17, "name": "pushbacktruck"},
+    {"color": [220, 220, 0], "isthing": 1, "id": 18, "name": "stairtruck"},
+    {"color": [175, 116, 175], "isthing": 1, "id": 19, "name": "trainer"},
+    {"color": [250, 0, 30], "isthing": 1, "id": 20, "name": "truck"},
+    {"color": [165, 42, 42], "isthing": 1, "id": 21, "name": "van"},
+
     # {"color": [255, 77, 255], "isthing": 1, "id": 17, "name": "cat"},
     # {"color": [0, 226, 252], "isthing": 1, "id": 18, "name": "dog"},
     # {"color": [182, 182, 255], "isthing": 1, "id": 19, "name": "horse"},
@@ -228,12 +229,12 @@ COCO_CATEGORIES = [
 COCO_NOVEL_CATEGORIES = [
     # custom
 
-    {"color": [220, 20, 60], "isthing": 1, "id": 16, "name": "Gasschieberdeckel"},
-    {"color": [119, 11, 32], "isthing": 1, "id": 17, "name": "Kanalschachtdeckel"},
-    {"color": [0, 0, 142], "isthing": 1, "id": 18, "name": "Sinkkaesten"},
-    {"color": [0, 0, 230], "isthing": 1, "id": 19, "name": "Unterflurhydrant"},
-    {"color": [106, 0, 228], "isthing": 1, "id": 20, "name": "Versorgungsschacht"},
-    {"color": [0, 60, 100], "isthing": 1, "id": 21, "name": "Wasserschieberdeckel"},
+    {"color": [220, 20, 60], "isthing": 1, "id": 1, "name": "Gasschieberdeckel"},
+    {"color": [119, 11, 32], "isthing": 1, "id": 2, "name": "Kanalschachtdeckel"},
+    {"color": [0, 0, 142], "isthing": 1, "id": 3, "name": "Sinkkaesten"},
+    {"color": [0, 0, 230], "isthing": 1, "id": 4, "name": "Unterflurhydrant"},
+    {"color": [106, 0, 228], "isthing": 1, "id": 5, "name": "Versorgungsschacht"},
+    {"color": [0, 60, 100], "isthing": 1, "id": 6, "name": "Wasserschieberdeckel"},
 
 
     # {"color": [220, 20, 60], "isthing": 1, "id": 1, "name": "person"},
@@ -392,7 +393,7 @@ PASCAL_VOC_BASE_CATEGORIES = {
 def _get_coco_instances_meta():
     thing_ids = [k["id"] for k in COCO_CATEGORIES if k["isthing"] == 1]
     thing_colors = [k["color"] for k in COCO_CATEGORIES if k["isthing"] == 1]
-    assert len(thing_ids) == 6, len(thing_ids)  # @wangzheng 80
+    assert len(thing_ids) == 21, len(thing_ids)  # @wangzheng 80
     # Mapping from the incontiguous COCO category id to an id in [0, 79]
     thing_dataset_id_to_contiguous_id = {k: i for i, k in enumerate(thing_ids)}
     thing_classes = [k["name"] for k in COCO_CATEGORIES if k["isthing"] == 1]

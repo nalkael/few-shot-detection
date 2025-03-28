@@ -16,3 +16,5 @@ _CC.MODEL.ROI_HEADS.COSINE_SCALE = 20.0
 
 # Backward Compatible options.
 _CC.MUTE_HEADER = True
+
+_CC.DATALOADER.NUM_WORKERS = 8

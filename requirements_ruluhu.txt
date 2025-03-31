@@ -1,0 +1,10 @@
+detectron2
+fiftyone
+fsdet
+imagesize
+jaraco.collections
+lvis
+pip-chill
+sahi
+torchaudio
+torchvision

@@ -29,10 +29,10 @@ from .meta_pascal_voc import register_meta_pascal_voc
 root_pth = "datasets"
 _PREDEFINED_SPLITS_COCO = {}
 _PREDEFINED_SPLITS_COCO["coco"] = {
-    # jiaonang
-    "jiaonang_train": (
-        "coco/640x640_coco/train",
-        "coco/640x640_coco/train/_annotations.coco.json",
+    # orthomosaic
+    "ortho_train": (
+        "merged_ortho_coco/train",
+        "merged_ortho_coco/train/_annotations.coco.json",
     ),
     # "coco_2014_train": (
     #     "coco/train2014",
@@ -93,27 +93,27 @@ def register_all_coco(root=root_pth):
     # register meta datasets
     METASPLITS = [
         (
-            "jiaonang_train_all",
-            "coco/640x640_coco/train",
-            "coco/640x640_coco/train/_annotations.coco.json",
+            "ortho_train_all",
+            "merged_ortho_coco/train",
+            "merged_ortho_coco/train/_annotations.coco.json",
         ),
         (
-            "jiaonang_train_base",
-            "coco/640x640_coco/train",
-            "coco/640x640_coco/train/_annotations.coco.json",
+            "ortho_train_base",
+            "merged_ortho_coco/train",
+            "merged_ortho_coco/train/_annotations.coco.json",
         ),
-        ("test_all", "coco/640x640_coco/test", "coco/640x640_coco/test/_annotations.coco.json"),
-        ("test_base", "coco/640x640_coco/test", "coco/640x640_coco/test/_annotations.coco.json"),
-        ("test_novel", "coco/640x640_coco/test", "coco/640x640_coco/test/_annotations.coco.json"),
+        ("test_all", "merged_ortho_coco/test", "merged_ortho_coco/test/_annotations.coco.json"),
+        ("test_base", "merged_ortho_coco/test", "merged_ortho_coco/test/_annotations.coco.json"),
+        ("test_novel", "merged_ortho_coco/test", "merged_ortho_coco/test/_annotations.coco.json"),
     ]
 
     # register small meta datasets for fine-tuning stage
     for prefix in ["all", "novel"]:
-        for shot in [1, 2, 3, 5, 10, 20, 30, 50]:#shot改为自己的
+        for shot in [10, 20, 30, 50]: #shot改为自己的
             for seed in range(10):
                 seed = "" if seed == 0 else "_seed{}".format(seed)
                 name = "coco_trainval_{}_{}shot{}".format(prefix, shot, seed)
-                METASPLITS.append((name, "coco/640x640_coco/train", ""))
+                METASPLITS.append((name, "merged_ortho_coco/train", ""))
 
     for name, imgdir, annofile in METASPLITS:
         register_meta_coco(

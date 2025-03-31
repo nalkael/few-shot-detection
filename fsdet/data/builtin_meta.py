@@ -2,41 +2,26 @@
 # It's from https://github.com/cocodataset/panopticapi/blob/master/panoptic_coco_categories.json
 COCO_CATEGORIES = [
     # custom
-    {"color": [220, 20, 60], "isthing": 1, "id": 1, "name": "car"},
-    {"color": [119, 11, 32], "isthing": 1, "id": 2, "name": "truck"},
-    {"color": [0, 0, 142], "isthing": 1, "id": 3, "name": "van"},
-    {"color": [0, 0, 230], "isthing": 1, "id": 4, "name": "longvehicle"},
-    {"color": [106, 0, 228], "isthing": 1, "id": 5, "name": "bus"},
-    {"color": [0, 60, 100], "isthing": 1, "id": 6, "name": "airliner"},
-    {"color": [220, 20, 60], "isthing": 1, "id": 7, "name": "propeller"},
-    {"color": [119, 11, 32], "isthing": 1, "id": 8, "name": "trainer"},
-    {"color": [0, 0, 142], "isthing": 1, "id": 9, "name": "chartered"},
-    {"color": [0, 0, 230], "isthing": 1, "id": 10, "name": "fighter"},
-    {"color": [106, 0, 228], "isthing": 1, "id": 11, "name": "other"},
-    {"color": [0, 60, 100], "isthing": 1, "id": 12, "name": "stairtruck"},
-    {"color": [0, 80, 100], "isthing": 1, "id": 13, "name": "pushbacktruck"},
-    {"color": [0, 0, 70], "isthing": 1, "id": 14, "name": "helicopter"},
-    {"color": [0, 0, 192], "isthing": 1, "id": 15, "name": "boat"},
-
-    {"color": [250, 170, 30], "isthing": 1, "id": 16, "name": "Gasschieberdeckel"},
-    {"color": [100, 170, 30], "isthing": 1, "id": 17, "name": "Kanalschachtdeckel"},
-    {"color": [220, 220, 0], "isthing": 1, "id": 18, "name": "Sinkkaestenn"},
-    {"color": [175, 116, 175], "isthing": 1, "id": 19, "name": "Unterflurhydrant"},
-    {"color": [250, 0, 30], "isthing": 1, "id": 20, "name": "Versorgungsschacht"},
-    {"color": [165, 42, 42], "isthing": 1, "id": 21, "name": "Wasserschieberdeckel"},
-    # {"color": [255, 77, 255], "isthing": 1, "id": 17, "name": "cat"},
-    # {"color": [0, 226, 252], "isthing": 1, "id": 18, "name": "dog"},
-    # {"color": [182, 182, 255], "isthing": 1, "id": 19, "name": "horse"},
-    # {"color": [0, 82, 0], "isthing": 1, "id": 20, "name": "sheep"},
-    # {"color": [120, 166, 157], "isthing": 1, "id": 21, "name": "cow"},
-    # {"color": [110, 76, 0], "isthing": 1, "id": 22, "name": "elephant"},
-    # {"color": [174, 57, 255], "isthing": 1, "id": 23, "name": "bear"},
-    # {"color": [199, 100, 0], "isthing": 1, "id": 24, "name": "zebra"},
-    # {"color": [72, 0, 118], "isthing": 1, "id": 25, "name": "giraffe"},
-    # {"color": [255, 179, 240], "isthing": 1, "id": 27, "name": "backpack"},
-    # {"color": [0, 125, 92], "isthing": 1, "id": 28, "name": "umbrella"},
-    # {"color": [209, 0, 151], "isthing": 1, "id": 31, "name": "handbag"},
-    # {"color": [188, 208, 182], "isthing": 1, "id": 32, "name": "tie"},
+    {"color": [220, 20, 60], "isthing": 1, "id": 1, "name": "Gasschieberdeckel"},
+    {"color": [119, 11, 32], "isthing": 1, "id": 2, "name": "Kanalschachtdeckel"},
+    {"color": [0, 0, 142], "isthing": 1, "id": 3, "name": "Sinkkaesten"},
+    {"color": [0, 0, 230], "isthing": 1, "id": 4, "name": "Unterflurhydrant"},
+    {"color": [106, 0, 228], "isthing": 1, "id": 5, "name": "Versorgungsschacht"},
+    {"color": [0, 60, 100], "isthing": 1, "id": 6, "name": "Wasserschieberdeckel"},
+    
+    {"color": [255, 77, 255], "isthing": 1, "id": 7, "name": "airliner"},
+    {"color": [0, 226, 252], "isthing": 1, "id": 8, "name": "boat"},
+    {"color": [182, 182, 255], "isthing": 1, "id": 9, "name": "bus"},
+    {"color": [0, 82, 0], "isthing": 1, "id": 10, "name": "car"},
+    {"color": [120, 166, 157], "isthing": 1, "id": 11, "name": "chartered"},
+    {"color": [110, 76, 0], "isthing": 1, "id": 12, "name": "longvehicle"},
+    {"color": [174, 57, 255], "isthing": 1, "id": 13, "name": "other"},
+    {"color": [199, 100, 0], "isthing": 1, "id": 14, "name": "propeller"},
+    {"color": [72, 0, 118], "isthing": 1, "id": 15, "name": "pushbacktruck"},
+    {"color": [255, 179, 240], "isthing": 1, "id": 16, "name": "stairtruck"},
+    {"color": [0, 125, 92], "isthing": 1, "id": 17, "name": "trainer"},
+    {"color": [209, 0, 151], "isthing": 1, "id": 18, "name": "truck"},
+    {"color": [188, 208, 182], "isthing": 1, "id": 19, "name": "van"},
     # {"color": [0, 220, 176], "isthing": 1, "id": 33, "name": "suitcase"},
     # {"color": [255, 99, 164], "isthing": 1, "id": 34, "name": "frisbee"},
     # {"color": [92, 0, 73], "isthing": 1, "id": 35, "name": "skis"},
@@ -228,13 +213,12 @@ COCO_CATEGORIES = [
 COCO_NOVEL_CATEGORIES = [
     # custom
 
-    {"color": [220, 20, 60], "isthing": 1, "id": 16, "name": "Gasschieberdeckel"},
-    {"color": [119, 11, 32], "isthing": 1, "id": 17, "name": "Kanalschachtdeckel"},
-    {"color": [0, 0, 142], "isthing": 1, "id": 18, "name": "Sinkkaesten"},
-    {"color": [0, 0, 230], "isthing": 1, "id": 19, "name": "Unterflurhydrant"},
-    {"color": [106, 0, 228], "isthing": 1, "id": 20, "name": "Versorgungsschacht"},
-    {"color": [0, 60, 100], "isthing": 1, "id": 21, "name": "Wasserschieberdeckel"},
-
+    {"color": [220, 20, 60], "isthing": 1, "id": 1, "name": "Gasschieberdeckel"},
+    {"color": [119, 11, 32], "isthing": 1, "id": 2, "name": "Kanalschachtdeckel"},
+    {"color": [0, 0, 142], "isthing": 1, "id": 3, "name": "Sinkkaesten"},
+    {"color": [0, 0, 230], "isthing": 1, "id": 4, "name": "Unterflurhydrant"},
+    {"color": [106, 0, 228], "isthing": 1, "id": 5, "name": "Versorgungsschacht"},
+    {"color": [0, 60, 100], "isthing": 1, "id": 6, "name": "Wasserschieberdeckel"},
 
     # {"color": [220, 20, 60], "isthing": 1, "id": 1, "name": "person"},
     # {"color": [119, 11, 32], "isthing": 1, "id": 2, "name": "bicycle"},
@@ -392,7 +376,8 @@ PASCAL_VOC_BASE_CATEGORIES = {
 def _get_coco_instances_meta():
     thing_ids = [k["id"] for k in COCO_CATEGORIES if k["isthing"] == 1]
     thing_colors = [k["color"] for k in COCO_CATEGORIES if k["isthing"] == 1]
-    assert len(thing_ids) == 6, len(thing_ids)  # @wangzheng 80
+    #############################
+    assert len(thing_ids) == 19, len(thing_ids)  # @wangzheng 80
     # Mapping from the incontiguous COCO category id to an id in [0, 79]
     thing_dataset_id_to_contiguous_id = {k: i for i, k in enumerate(thing_ids)}
     thing_classes = [k["name"] for k in COCO_CATEGORIES if k["isthing"] == 1]

@@ -17,14 +17,14 @@ DATASETS:
   TRAIN: ('ortho_train_base',)
   TEST: ('test_base',)
 SOLVER:
-  IMS_PER_BATCH: 4
+  IMS_PER_BATCH: 8
   BASE_LR: 0.01
   STEPS: (10000, 15000, 20000)
   GAMMA: 0.5
-  MAX_ITER: 25000
+  MAX_ITER: 30000
   BASE_LR: 0.005
   CHECKPOINT_PERIOD: 500
-  WARMUP_ITERS: 5000
+  WARMUP_ITERS: 500
 TEST:
   EVAL_PERIOD: 500
 OUTPUT_DIR: "checkpoints/coco/faster_rcnn/faster_rcnn_R_101_FPN_ortho_base"

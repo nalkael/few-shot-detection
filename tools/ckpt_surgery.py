@@ -186,14 +186,14 @@ if __name__ == '__main__':
     if args.coco:
         # COCO
         NOVEL_CLASSES = [
-            1, 4,
+            1, 2, 3, 4, 5, 6
         ]
         BASE_CLASSES = [
-            2, 3, 5, 6, 
+            7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19 
         ]
         ALL_CLASSES = sorted(BASE_CLASSES + NOVEL_CLASSES)
         IDMAP = {v:i for i, v in enumerate(ALL_CLASSES)}
-        TAR_SIZE = 6
+        TAR_SIZE = 19
     elif args.lvis:
         # LVIS
         NOVEL_CLASSES = [

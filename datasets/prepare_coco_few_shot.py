@@ -14,7 +14,7 @@ def parse_args():
 
 def generate_seeds(args):
     #data_path = 'datasets/cocosplit/datasplit/trainvalno5k.json'
-    data_path = '/home/rdluhu/Dokumente/few-shot-object-detection/datasets/coco/640x640_coco/train/_annotations.coco.json'
+    data_path = 'datasets/merged_ortho_coco/train/_annotations.coco.json'
     data = json.load(open(data_path))
 
     new_all_cats = []
@@ -44,7 +44,7 @@ def generate_seeds(args):
             sample_shots = []
             sample_imgs = []
             # for shots in [1, 2, 3, 5, 10, 20, 30, 50]:
-            for shots in [1, 2, 3, 5, 10, 20, 30, 50]:
+            for shots in [10, 20, 30, 50]: # 10-shot to 50-shot
                 while True:
                     imgs = random.sample(list(img_ids.keys()), shots)
                     for img in imgs:
@@ -94,19 +94,20 @@ if __name__ == '__main__':
         5: "Versorgungsschacht",
         6: "Wasserschieberdeckel",
         
-        # 1: "person",
-        # 2: "bicycle",
-        # 3: "car",
-        # 4: "motorcycle",
-        # 5: "airplane",
-        # 6: "bus",
-        # 7: "train",
-        # 8: "truck",
-        # 9: "boat",
-        # 10: "traffic light",
-        # 11: "fire hydrant",
-        # 13: "stop sign",
-        # 14: "parking meter",
+        7: "airliner",
+        8: "boat",
+        9: "bus",
+        10: "car",
+        11: "chartered",
+        12: "longvehicle",
+        13: "other",
+        14: "propeller",
+        15: "pushbacktruck",
+        16: "stairtruck",
+        17: "trainer",
+        18: "truck",
+        19: "van",
+        
         # 15: "bench",
         # 16: "bird",
         # 17: "cat",

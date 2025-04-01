@@ -6,7 +6,8 @@ output*/
 detectron2*/
 pretrained*/
 demo_data/
-datasets/
+# datasets/
+merged_ortho_coco*/
 orthomosaic*/
 runs/
 # samples/
@@ -15,7 +16,6 @@ defrcn*/
 coco/
 cocosplit/
 checkpoints/
-SIMD/
 
 # big files
 *.synctex.gz*

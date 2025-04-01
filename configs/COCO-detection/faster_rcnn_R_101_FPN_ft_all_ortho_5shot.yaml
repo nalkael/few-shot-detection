@@ -1,11 +1,11 @@
 _BASE_: "../Base-RCNN-FPN.yaml"
 MODEL:
-  WEIGHTS: "/home/rdluhu/Dokumente/few-shot-object-detection/outputs/faster_rcnn/faster_rcnn_R_101_FPN_ortho_base/model_reset_surgery.pth"
+  WEIGHTS: "checkpoints/coco/faster_rcnn/faster_rcnn_R_101_FPN_ortho_all/model_reset_surgery.pth"
   MASK_ON: False
   RESNETS:
     DEPTH: 101
   ROI_HEADS:
-    NUM_CLASSES: 6
+    NUM_CLASSES: 19
     OUTPUT_LAYER: "CosineSimOutputLayers"
     FREEZE_FEAT: True
   BACKBONE:
@@ -14,7 +14,7 @@ MODEL:
     FREEZE: True
 DATASETS:
   TRAIN: ('coco_trainval_all_5shot',)
-  TEST: ('ortho_test_all',)
+  TEST: ('test_all',)
 SOLVER:
   IMS_PER_BATCH: 2
   BASE_LR: 0.001

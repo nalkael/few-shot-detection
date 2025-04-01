@@ -1,0 +1,30 @@
+_BASE_: "../Base-RCNN-FPN.yaml"
+MODEL:
+  WEIGHTS: "checkpoints/coco/faster_rcnn/faster_rcnn_R_101_FPN_ortho_all/model_reset_remove.pth"
+  # WEIGHTS: "checkpoints/coco/faster_rcnn/faster_rcnn_R_101_FPN_ft_all_30shot/model_final.pth"
+  MASK_ON: False
+  RESNETS:
+    DEPTH: 101
+  ROI_HEADS:
+    NUM_CLASSES: 6
+    FREEZE_FEAT: True
+  BACKBONE:
+    FREEZE: True
+  PROPOSAL_GENERATOR:
+    FREEZE: True
+  ANCHOR_GENERATOR:
+    SIZES: [[8, 16, 32, 64, 128]]
+DATASETS:
+  TRAIN: ('coco_trainval_novel_50shot',)
+  TEST: ('test_novel',)
+SOLVER:
+  IMS_PER_BATCH: 4 # if BATCH = 8, need much longer time to train
+  BASE_LR: 0.005
+  STEPS: (18000,)
+  MAX_ITER: 25000
+  CHECKPOINT_PERIOD: 1000
+  WARMUP_ITERS: 300
+  WARMUP_FACTOR: 0.001
+TEST:
+  EVAL_PERIOD: 1000
+OUTPUT_DIR: "checkpoints/coco/faster_rcnn/faster_rcnn_R_101_FPN_ft_novel_ortho_50shot"

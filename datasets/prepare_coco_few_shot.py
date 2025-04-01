@@ -44,7 +44,7 @@ def generate_seeds(args):
             sample_shots = []
             sample_imgs = []
             # for shots in [1, 2, 3, 5, 10, 20, 30, 50]:
-            for shots in [10, 20, 30, 50]: # 10-shot to 50-shot
+            for shots in [5, 10, 20, 30, 50]: # 10-shot to 50-shot
                 while True:
                     imgs = random.sample(list(img_ids.keys()), shots)
                     for img in imgs:

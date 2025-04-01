@@ -12,14 +12,19 @@ MODEL:
     FREEZE: True
   PROPOSAL_GENERATOR:
     FREEZE: True
+  ANCHOR_GENERATOR:
+    SIZES: [[8, 16, 32, 64, 128]]
 DATASETS:
   TRAIN: ('coco_trainval_novel_30shot',)
   TEST: ('test_novel',)
 SOLVER:
-  IMS_PER_BATCH: 4
-  BASE_LR: 0.002
-  STEPS: (5000,)
-  MAX_ITER: 10000
-  CHECKPOINT_PERIOD: 500
-  WARMUP_ITERS: 0
+  IMS_PER_BATCH: 16 # if BATCH = 8, need much longer time to train
+  BASE_LR: 0.01
+  STEPS: (10000, 20000)
+  MAX_ITER: 30000
+  CHECKPOINT_PERIOD: 1000
+  WARMUP_ITERS: 300
+  WARMUP_FACTOR: 0.01
+TEST:
+  EVAL_PERIOD: 1000
 OUTPUT_DIR: "checkpoints/coco/faster_rcnn/faster_rcnn_R_101_FPN_ft_novel_ortho_30shot"

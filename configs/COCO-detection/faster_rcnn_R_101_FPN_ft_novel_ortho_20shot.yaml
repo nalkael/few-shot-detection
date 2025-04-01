@@ -1,7 +1,7 @@
 _BASE_: "../Base-RCNN-FPN.yaml"
 MODEL:
   WEIGHTS: "checkpoints/coco/faster_rcnn/faster_rcnn_R_101_FPN_ortho_all/model_reset_remove.pth"
-  # WEIGHTS: "checkpoints/coco/faster_rcnn/faster_rcnn_R_101_FPN_ft_all_30shot/model_final.pth"
+  # WEIGHTS: "checkpoints/coco/faster_rcnn/faster_rcnn_R_101_FPN_ft_all_20shot/model_final.pth"
   MASK_ON: False
   RESNETS:
     DEPTH: 101
@@ -15,16 +15,16 @@ MODEL:
   ANCHOR_GENERATOR:
     SIZES: [[8, 16, 32, 64, 128]]
 DATASETS:
-  TRAIN: ('coco_trainval_novel_50shot',)
+  TRAIN: ('coco_trainval_novel_20shot',)
   TEST: ('test_novel',)
 SOLVER:
   IMS_PER_BATCH: 16 # if BATCH = 8, need much longer time to train
   BASE_LR: 0.01
-  STEPS: (10000, 20000)
-  MAX_ITER: 30000
+  STEPS: (15000, )
+  MAX_ITER: 25000
   CHECKPOINT_PERIOD: 1000
   WARMUP_ITERS: 300
   WARMUP_FACTOR: 0.01
 TEST:
   EVAL_PERIOD: 1000
-OUTPUT_DIR: "checkpoints/coco/faster_rcnn/faster_rcnn_R_101_FPN_ft_novel_ortho_50shot"
+OUTPUT_DIR: "checkpoints/coco/faster_rcnn/faster_rcnn_R_101_FPN_ft_novel_ortho_20shot"

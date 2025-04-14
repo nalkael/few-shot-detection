@@ -31,8 +31,10 @@ def generate_seeds(args):
             continue
         anno[a['category_id']].append(a)
 
+    # for i in range(args.seeds[0], args.seeds[1]):
     for i in range(args.seeds[0], args.seeds[1]):
         random.seed(i)
+        # random.seed(0)
         for c in ID2CLASS.keys():
             img_ids = {}
             for a in anno[c]:
@@ -43,8 +45,8 @@ def generate_seeds(args):
 
             sample_shots = []
             sample_imgs = []
-            # for shots in [1, 2, 3, 5, 10, 20, 30, 50]:
-            for shots in [5, 10, 20, 30, 50]: # 10-shot to 50-shot
+            # for shots in [1, 5, 10, 20]:
+            for shots in [10, 20, 30]: # 10-shot to 50-shot
                 while True:
                     imgs = random.sample(list(img_ids.keys()), shots)
                     for img in imgs:
@@ -59,9 +61,9 @@ def generate_seeds(args):
                             continue
                         sample_shots.extend(img_ids[img])
                         sample_imgs.append(id2img[img])
-                        if len(sample_shots) == shots:
+                        if len(sample_shots) == shots: # maybe change the constrain condition to avoid dead loop
                             break
-                    if len(sample_shots) == shots:
+                    if len(sample_shots) == shots: # maybe the same as above @ Huaixin
                         break
                 new_data = {
                     #'info': data['info'],
@@ -93,20 +95,19 @@ if __name__ == '__main__':
         4: "Unterflurhydrant",
         5: "Versorgungsschacht",
         6: "Wasserschieberdeckel",
+
+        7: "aircraft",
+        8: "oiltank",
+        9: "overpass",
+        10: "playground",
         
-        7: "airliner",
-        8: "boat",
-        9: "bus",
-        10: "car",
-        11: "chartered",
-        12: "longvehicle",
-        13: "other",
-        14: "propeller",
-        15: "pushbacktruck",
-        16: "stairtruck",
-        17: "trainer",
-        18: "truck",
-        19: "van",
+        # 13: "other",
+        # 14: "propeller",
+        # 15: "pushbacktruck",
+        # 16: "stairtruck",
+        # 17: "trainer",
+        # 18: "truck",
+        # 19: "van",
         
         # 15: "bench",
         # 16: "bird",

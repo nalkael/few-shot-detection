@@ -1,7 +1,5 @@
 import os
 
-#print("train base dataset...")
-
 """
 print("train 10-shot...")
 os.system(
@@ -9,16 +7,21 @@ os.system(
         --config-file \
         configs/COCO-detection/faster_rcnn_R_101_FPN_ft_all_ortho_10shot.yaml"
     )
-print("finish training 10-shot...")
-"""
 
-print("train 50-shot...")
+print("train 20-shot...")
 os.system(
     "python -m tools.train_net --num-gpus 1 \
         --config-file \
-        configs/COCO-detection/faster_rcnn_R_101_FPN_ft_all_ortho_50shot.yaml"
+        configs/COCO-detection/faster_rcnn_R_101_FPN_ft_all_ortho_20shot.yaml"
     )
-print("finish training 50-shot...")
+"""
+
+print("train 30-shot...")
+os.system(
+    "python -m tools.train_net --num-gpus 1 \
+        --config-file \
+        configs/COCO-detection/faster_rcnn_R_101_FPN_ft_all_ortho_30shot.yaml"
+    )
 
 
 

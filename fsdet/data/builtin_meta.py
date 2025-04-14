@@ -8,20 +8,21 @@ COCO_CATEGORIES = [
     {"color": [0, 0, 230], "isthing": 1, "id": 4, "name": "Unterflurhydrant"},
     {"color": [106, 0, 228], "isthing": 1, "id": 5, "name": "Versorgungsschacht"},
     {"color": [0, 60, 100], "isthing": 1, "id": 6, "name": "Wasserschieberdeckel"},
-    
-    {"color": [255, 77, 255], "isthing": 1, "id": 7, "name": "airliner"},
-    {"color": [0, 226, 252], "isthing": 1, "id": 8, "name": "boat"},
-    {"color": [182, 182, 255], "isthing": 1, "id": 9, "name": "bus"},
-    {"color": [0, 82, 0], "isthing": 1, "id": 10, "name": "car"},
-    {"color": [120, 166, 157], "isthing": 1, "id": 11, "name": "chartered"},
-    {"color": [110, 76, 0], "isthing": 1, "id": 12, "name": "longvehicle"},
-    {"color": [174, 57, 255], "isthing": 1, "id": 13, "name": "other"},
-    {"color": [199, 100, 0], "isthing": 1, "id": 14, "name": "propeller"},
-    {"color": [72, 0, 118], "isthing": 1, "id": 15, "name": "pushbacktruck"},
-    {"color": [255, 179, 240], "isthing": 1, "id": 16, "name": "stairtruck"},
-    {"color": [0, 125, 92], "isthing": 1, "id": 17, "name": "trainer"},
-    {"color": [209, 0, 151], "isthing": 1, "id": 18, "name": "truck"},
-    {"color": [188, 208, 182], "isthing": 1, "id": 19, "name": "van"},
+
+    {"color": [255, 77, 255], "isthing": 1, "id": 7, "name": "aircraft"},
+    {"color": [0, 226, 252], "isthing": 1, "id": 8, "name": "oiltank"},
+    {"color": [182, 182, 255], "isthing": 1, "id": 9, "name": "overpass"},
+    {"color": [0, 82, 0], "isthing": 1, "id": 10, "name": "playground"},
+
+    # {"color": [120, 166, 157], "isthing": 1, "id": 11, "name": "chartered"},
+    # {"color": [110, 76, 0], "isthing": 1, "id": 12, "name": "longvehicle"},
+    # {"color": [174, 57, 255], "isthing": 1, "id": 13, "name": "other"},
+    # {"color": [199, 100, 0], "isthing": 1, "id": 14, "name": "propeller"},
+    # {"color": [72, 0, 118], "isthing": 1, "id": 15, "name": "pushbacktruck"},
+    # {"color": [255, 179, 240], "isthing": 1, "id": 16, "name": "stairtruck"},
+    # {"color": [0, 125, 92], "isthing": 1, "id": 17, "name": "trainer"},
+    # {"color": [209, 0, 151], "isthing": 1, "id": 18, "name": "truck"},
+    # {"color": [188, 208, 182], "isthing": 1, "id": 19, "name": "van"},
     # {"color": [0, 220, 176], "isthing": 1, "id": 33, "name": "suitcase"},
     # {"color": [255, 99, 164], "isthing": 1, "id": 34, "name": "frisbee"},
     # {"color": [92, 0, 73], "isthing": 1, "id": 35, "name": "skis"},
@@ -211,7 +212,7 @@ COCO_CATEGORIES = [
 
 # Novel COCO categories
 COCO_NOVEL_CATEGORIES = [
-    # custom
+    # custom novel classes
 
     {"color": [220, 20, 60], "isthing": 1, "id": 1, "name": "Gasschieberdeckel"},
     {"color": [119, 11, 32], "isthing": 1, "id": 2, "name": "Kanalschachtdeckel"},
@@ -377,7 +378,7 @@ def _get_coco_instances_meta():
     thing_ids = [k["id"] for k in COCO_CATEGORIES if k["isthing"] == 1]
     thing_colors = [k["color"] for k in COCO_CATEGORIES if k["isthing"] == 1]
     #############################
-    assert len(thing_ids) == 19, len(thing_ids)  # @wangzheng 80
+    assert len(thing_ids) == 10, len(thing_ids)  # It's the total classes number (base + novel)
     # Mapping from the incontiguous COCO category id to an id in [0, 79]
     thing_dataset_id_to_contiguous_id = {k: i for i, k in enumerate(thing_ids)}
     thing_classes = [k["name"] for k in COCO_CATEGORIES if k["isthing"] == 1]

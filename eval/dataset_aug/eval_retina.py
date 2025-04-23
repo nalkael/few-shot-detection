@@ -11,20 +11,18 @@ from supervision.metrics import F1Score, Precision, Recall, MeanAveragePrecision
 from detectron2.engine import DefaultPredictor
 from detectron2.config import get_cfg
 
-# load Detectron2 model: Faster R-CNN
+# load Detectron2 model: RetinaNet
 cfg = get_cfg()
-cfg.merge_from_file("mainprocess/faster_rcnn_R_101_FPN_ft_all_ortho_30shot.yaml")
-cfg.MODEL.WEIGHTS = "checkpoints/coco/faster_rcnn/faster_rcnn_R_101_FPN_ft_all_30shot/model_final.pth" # cascade model without augmentation
+cfg.merge_from_file("mainprocess/models/retina_net/model_config.yaml")
+cfg.MODEL.WEIGHTS = "outputs/retina_net_202504071701/model_0013499.pth" # cascade model without augmentation
 cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = 0.5
 
 predictor = DefaultPredictor(cfg)
 
 # load coco dataset for test
 test_dataset = sv.DetectionDataset.from_coco(
-    images_directory_path="datasets/merged_ortho_coco/test", # coco images path
-    # images_directory_path="/home/rdluhu/Dokumente/object_detection_project/datasets/dataset_coco/test", 
-    annotations_path="datasets/merged_ortho_coco/test/_annotations.coco.json" # coco annotations
-    # annotations_path="/home/rdluhu/Dokumente/object_detection_project/datasets/dataset_coco/test/_annotations.coco.json"
+    images_directory_path="datasets/dataset_coco/test", # coco images path
+    annotations_path="datasets/dataset_coco/test/_annotations.coco.json" # coco annotations
 )
 
 class_names = test_dataset.classes
@@ -51,17 +49,18 @@ for image_path, _, ground_truth in test_dataset:
 
 
 # save interval result into file
-with open("30_shot_predictions.pkl", "wb") as f:
+with open("retina_predictions.pkl", "wb") as f:
     pickle.dump(predictions, f)
 
-with open("30_shot_targets.pkl", "wb") as f:
+with open("retina_targets.pkl", "wb") as f:
     pickle.dump(targets, f)
 
+
 # load pickel files
-with open("30_shot_predictions.pkl", "rb") as f:
+with open("retina_predictions.pkl", "rb") as f:
     predictions = pickle.load(f)
 
-with open("30_shot_targets.pkl", "rb") as f:
+with open("retina_targets.pkl", "rb") as f:
     targets = pickle.load(f)
 
 # calculate the F1 score for whole dataset
@@ -83,7 +82,7 @@ map_metrics = MeanAveragePrecision()
 map_result = map_metrics.update(predictions, targets).compute()
 print(map_result)
 
-with open('30_shot_results.txt', 'w') as f:
+with open('retina_results.txt', 'w') as f:
     with redirect_stdout(f):
         print("========== Evaluation Results ==========")
 

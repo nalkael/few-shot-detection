@@ -8,60 +8,49 @@ import numpy as np
 import pickle
 from supervision.metrics import F1Score, Precision, Recall, MeanAveragePrecision, MeanAverageRecall
 
-from detectron2.engine import DefaultPredictor
-from detectron2.config import get_cfg
+# load trained model weights
+model = YOLO("outputs/yolo_v8/exp_yolo_origin/weights/best.pt")
+# model = YOLO("outputs/yolo_v8/exp_yolo_origin/best.pt")
 
-# load Detectron2 model: Faster R-CNN
-cfg = get_cfg()
-cfg.merge_from_file("mainprocess/faster_rcnn_R_101_FPN_ft_all_ortho_30shot.yaml")
-cfg.MODEL.WEIGHTS = "checkpoints/coco/faster_rcnn/faster_rcnn_R_101_FPN_ft_all_30shot/model_final.pth" # cascade model without augmentation
-cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = 0.5
-
-predictor = DefaultPredictor(cfg)
-
-# load coco dataset for test
-test_dataset = sv.DetectionDataset.from_coco(
-    images_directory_path="datasets/merged_ortho_coco/test", # coco images path
-    # images_directory_path="/home/rdluhu/Dokumente/object_detection_project/datasets/dataset_coco/test", 
-    annotations_path="datasets/merged_ortho_coco/test/_annotations.coco.json" # coco annotations
-    # annotations_path="/home/rdluhu/Dokumente/object_detection_project/datasets/dataset_coco/test/_annotations.coco.json"
+# load yolo dataset for test
+test_dataset = sv.DetectionDataset.from_yolo(
+    images_directory_path="datasets/dataset_yolo/test/images",
+    annotations_directory_path="datasets/dataset_yolo/test/labels",
+    data_yaml_path="datasets/dataset_yolo/data.yaml"
 )
 
 class_names = test_dataset.classes
-# print(class_names)
+print(class_names)
 num_classes = len(class_names)
 
 # conduct inference and collect prediction and ground truth labels
 predictions = []
 targets =[]
 
-# Run inference and collect predictions and targets
 for image_path, _, ground_truth in test_dataset:
+    # load image
     image = cv2.imread(image_path)
-    outputs = predictor(image)
-    
-    # Handle empty detections
-    if len(outputs["instances"]) > 0:
-        pred_detections = sv.Detections.from_detectron2(outputs)
-    else:
-        pred_detections = sv.Detections.empty()  # Create an empty Detections object
-    
+
+    # use yolov8 to do the inference
+    results = model.predict(image, conf=0.5)
+    pred_detections = sv.Detections.from_ultralytics(results[0]) # convert to supervision format
+
     predictions.append(pred_detections)
     targets.append(ground_truth)
 
 
 # save interval result into file
-with open("30_shot_predictions.pkl", "wb") as f:
+with open("yolo_predictions.pkl", "wb") as f:
     pickle.dump(predictions, f)
 
-with open("30_shot_targets.pkl", "wb") as f:
+with open("yolo_targets.pkl", "wb") as f:
     pickle.dump(targets, f)
 
 # load pickel files
-with open("30_shot_predictions.pkl", "rb") as f:
+with open("yolo_predictions.pkl", "rb") as f:
     predictions = pickle.load(f)
 
-with open("30_shot_targets.pkl", "rb") as f:
+with open("yolo_targets.pkl", "rb") as f:
     targets = pickle.load(f)
 
 # calculate the F1 score for whole dataset
@@ -83,7 +72,7 @@ map_metrics = MeanAveragePrecision()
 map_result = map_metrics.update(predictions, targets).compute()
 print(map_result)
 
-with open('30_shot_results.txt', 'w') as f:
+with open('yolo_results.txt', 'w') as f:
     with redirect_stdout(f):
         print("========== Evaluation Results ==========")
 

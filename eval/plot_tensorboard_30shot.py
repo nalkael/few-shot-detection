@@ -6,7 +6,7 @@ from tensorboard.backend.event_processing.event_accumulator import EventAccumula
 import matplotlib.pyplot as plt
 
 # load event file
-event_file = "outputs/cascade_rcnn_origin/events.out.tfevents.1744125877.PC-RD-343.281501.0"
+event_file = "checkpoints/coco/faster_rcnn/faster_rcnn_R_101_FPN_ft_all_30shot/events.out.tfevents.1745334365.PC-RD-343.14845.0"
 
 event_acc = EventAccumulator(event_file)
 event_acc.Reload() # load all data
@@ -28,12 +28,12 @@ class_ap_metrcis = [
     'bbox/AP75',
     'bbox/APs', 
     'bbox/APm',
-    'bbox/AP-Gasschieberdeckel', 
-    'bbox/AP-Kanalschachtdeckel', 
-    'bbox/AP-Sinkkaesten', 
-    'bbox/AP-Unterflurhydrant', 
-    'bbox/AP-Versorgungsschacht', 
-    'bbox/AP-Wasserschieberdeckel',
+    # 'bbox/AP-Gasschieberdeckel', 
+    # 'bbox/AP-Kanalschachtdeckel', 
+    # 'bbox/AP-Sinkkaesten', 
+    # 'bbox/AP-Unterflurhydrant', 
+    # 'bbox/AP-Versorgungsschacht', 
+    # 'bbox/AP-Wasserschieberdeckel',
 ]
 
 desired_metrics = class_ap_metrcis
@@ -46,13 +46,15 @@ custom_ap_labels = {
     'bbox/AP': 'mAP',
     'bbox/AP50': 'AP50',
     'bbox/AP75': 'AP75',
+    'bbox/APs': 'APs',
+    'bbox/APm': 'APm',
     # Example for per-class APs - adjust based on your class names
-    'bbox/AP-Gasschieberdeckel': 'AP (Gas)',
-    'bbox/AP-Kanalschachtdeckel': 'AP (Manhole)',
-    'bbox/AP-Sinkkaesten': 'AP (Sink)',
-    'bbox/AP-Unterflurhydrant': 'AP(Hydrant)', 
-    'bbox/AP-Versorgungsschacht' : 'AP(Utility)', 
-    'bbox/AP-Wasserschieberdeckel': 'AP(Water)',
+    # 'bbox/AP-Gasschieberdeckel': 'AP (Gas)',
+    # 'bbox/AP-Kanalschachtdeckel': 'AP (Manhole)',
+    # 'bbox/AP-Sinkkaesten': 'AP (Sink)',
+    # 'bbox/AP-Unterflurhydrant': 'AP(Hydrant)', 
+    # 'bbox/AP-Versorgungsschacht' : 'AP(Utility)', 
+    # 'bbox/AP-Wasserschieberdeckel': 'AP(Water)',
     # Add more as needed based on your event file
 }
 
@@ -84,18 +86,9 @@ if 'bbox/AP' in metric_data:
 
 if 'bbox/AP50' in metric_data:
     steps, values = metric_data['bbox/AP50']
-    # max_ap50 = max(values)
-    # max_ap50_index = values.index(max_ap50)
-    # max_ap50_iteration = steps[max_ap50_index]
-    # Filter for iterations > 9000
-    valid_indices = [i for i, step in enumerate(steps) if step > 10000]
-    if valid_indices:
-        filtered_values = [values[i] for i in valid_indices]
-        max_ap50 = max(filtered_values)
-        max_ap50_index = values.index(max_ap50)  # Index in original list
-        max_ap50_iteration = steps[max_ap50_index]
-    else:
-        print("No AP50 data available for iterations.")
+    max_ap50 = max(values)
+    max_ap50_index = values.index(max_ap50)
+    max_ap50_iteration = steps[max_ap50_index]
 
 # Print the results
 if max_map_iteration is not None:
@@ -107,18 +100,19 @@ if max_ap50_iteration is not None:
     print(f"Highest AP50: {max_ap50:.4f} at iteration {max_ap50_iteration}")
 else:
     print("AP50 data not available.")
-# ---------------------------
 
+
+# ---------------------------
 # Plot all metrics in one figure with different colors
+# Plot 1: AP Metrics
 plt.figure(figsize=(16, 8))  # Wider figure: 16 inches wide, 8 inches tall
 for metric, (steps, values) in metric_data.items():
-    # Use custom label if available, otherwise fall back to original metric name
     label = custom_ap_labels.get(metric, metric)
     plt.plot(steps, values, label=label)
 
 plt.xlabel('Iteration', fontsize=24)  # Larger font size
 plt.ylabel('Average Precision (AP)', fontsize=24)  # Larger font size
-plt.title('Validation Metrics and Per-Class AP over Iterations', fontsize=18)  # Larger font size
+plt.title('Validation Metrics over Iterations', fontsize=18)  # Larger font size
 plt.subplots_adjust(left=0.15, right=0.75, top=0.9, bottom=0.15)  # Adjusted margins
 plt.legend(bbox_to_anchor=(1.02, 1), loc='upper left', fontsize=20)  # Larger legend font size
 plt.grid(True)
@@ -134,16 +128,16 @@ plt.show()
 
 loss_metrics = [
     'total_loss',
-    'loss_cls_stage2',
-    'loss_box_reg_stage2',
+    'loss_cls',
+    'loss_box_reg',
     ]
 
 metric_data = {}
 
 custom_loss_labels = {
     'total_loss' : 'Total Loss',
-    'loss_cls_stage2': 'Class Loss',
-    'loss_box_reg_stage2': 'Box Reg Loss',}
+    'loss_cls': 'Class Loss',
+    'loss_box_reg': 'Box Reg Loss',}
 
 # Extract data for each metric
 for metric in loss_metrics:
@@ -160,7 +154,6 @@ for metric in loss_metrics:
 # Plot all metrics in one figure with different colors
 plt.figure(figsize=(16, 8))  # Wider figure: 16 inches wide, 8 inches tall
 for metric, (steps, values) in metric_data.items():
-    # Use custom label if available, otherwise fall back to original metric name
     label = custom_loss_labels.get(metric, metric)
     plt.plot(steps, values, label=label)
 

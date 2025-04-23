@@ -84,5 +84,5 @@ def inference_image(cfg, image_path="default_image.jpg"):
 if __name__ == '__main__':
     cfg = setup_cfg()
     predictor = DefaultPredictor(cfg)
-    image_path = sys.argv[1] if len(sys.argv) > 1 else "datasets/merged_ortho_coco/valid/playground_235_jpg.rf.2092cb8044430ac91387675783bfb7c0.jpg"
+    image_path = sys.argv[1] if len(sys.argv) > 1 else "datasets/merged_ortho_coco/valid/20230808_FR_18_3_png.rf.78f257d7f2291739f2d05334cab05cb6.jpg"
     inference_image(cfg, image_path)
